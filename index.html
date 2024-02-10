@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>攝氏轉華氏溫度轉換器</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    #sliderContainer {
+        max-width: 400px;
+        margin: 50px auto;
+    }
+    #celsiusValue {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    #fahrenheitValue {
+        font-size: 24px;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div id="sliderContainer">
+    <div id="celsiusValue">攝氏溫度: 0</div>
+    <input type="range" min="-100" max="100" value="0" id="celsiusSlider">
+    <div id="fahrenheitValue">華氏溫度: 32</div>
+</div>
+
+<script>
+    const celsiusSlider = document.getElementById('celsiusSlider');
+    const celsiusValue = document.getElementById('celsiusValue');
+    const fahrenheitValue = document.getElementById('fahrenheitValue');
+
+    function celsiusToFahrenheit(celsius) {
+        return (celsius * 9/5) + 32;
+    }
+
+    function updateTemperature() {
+        const celsius = parseInt(celsiusSlider.value);
+        const fahrenheit = celsiusToFahrenheit(celsius);
+        celsiusValue.textContent = `攝氏溫度: ${celsius}`;
+        fahrenheitValue.textContent = `華氏溫度: ${fahrenheit.toFixed(2)}`;
+    }
+
+    celsiusSlider.addEventListener('input', updateTemperature);
+    updateTemperature(); // 初始化溫度顯示
+</script>
+
+</body>
+</html>
